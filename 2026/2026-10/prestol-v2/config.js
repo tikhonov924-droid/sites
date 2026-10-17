@@ -1,8 +1,6 @@
 window.PRESTOL_CONFIG = {
   "FORM_ENDPOINT": "/api/lead",
   "METRIKA_ID": null,
-  "SHOW_PROJECTS": false,
-  "PROJECTS": [],
   "GROUPS": {
     "stol": {
       "title": "Столешницы из натурального камня",

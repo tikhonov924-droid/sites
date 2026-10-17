@@ -31,25 +31,10 @@
       link.setAttribute('aria-current',link.dataset.heroLink===hero?'true':'false');
     });
   }
-  const demo=review&&params.get('projects')==='1';
-  const projects=$('#projects');
-  projects.hidden=!(config.SHOW_PROJECTS||demo);
-  $$('[data-project-link]').forEach(link=>link.hidden=!config.SHOW_PROJECTS);
-  if(!projects.hidden){
-    const items=demo?[null]:(Array.isArray(config.PROJECTS)?config.PROJECTS:[]);
-    $('#project-demo-notice').hidden=!demo;
-    $('#projects-empty').hidden=items.length>0;
-    items.forEach(item=>{
-      const card=$('#project-template').content.firstElementChild.cloneNode(true);
-      if(item){
-        $$('[data-case]',card).forEach(el=>el.textContent=item[el.dataset.case]||'Не указано');
-        const image=$('img',card);
-        if(typeof item.image==='string'&&/^(img\/|https:\/\/)/.test(item.image))image.src=item.image;
-        image.alt=item.alt||item.type||'Фотография проекта';
-        if(item.placeholder!==true)image.removeAttribute('data-placeholder');
-      }
-      $('#project-list').append(card);
-    });
+  const requestedMaterial=params.get('material');
+  if(['Мрамор','Гранит','Кварцит','Травертин','Оникс','Сланец'].includes(requestedMaterial)){
+    material=requestedMaterial;$('#product').value='Подбор камня';
+    $('#selected-material').hidden=false;$('#selected-material').textContent='Выбранный камень: '+material;
   }
   const menu=$('.menu-toggle');
   const closeMenu=()=>{$('#navigation').classList.remove('is-open');menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-label','Открыть меню')};
